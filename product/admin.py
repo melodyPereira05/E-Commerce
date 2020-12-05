@@ -1,5 +1,5 @@
 from django.contrib import admin
-from product.models import Category,Product,Images
+from product.models import Category,Product,Images,Contact
 
 #https://docs.djangoproject.com/en/3.1/ref/contrib/admin/
 
@@ -20,7 +20,14 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImageInline]
     
 
+class ContactAdmin(admin.ModelAdmin):
+    list_display=('id','name','email','created_at','updated_at')
+    list_display_links=('id','name')
+    search_fields=('name','email')
+    
+    
  
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Product,ProductAdmin)
 admin.site.register(Images)   
+admin.site.register(Contact,ContactAdmin)   

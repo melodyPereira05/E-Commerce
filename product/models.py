@@ -1,6 +1,8 @@
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
+from datetime import datetime
 from django.utils.safestring import mark_safe
+from django.forms import ModelForm
 
 # Create your models here.
 class Category(models.Model):
@@ -8,7 +10,7 @@ class Category(models.Model):
         ('True', 'True'),
         ('False', 'False'), 
     )
-    parent = models.ForeignKey('self',blank=True, null=True ,related_name='children', on_delete=models.CASCADE)
+    parent = models.ForeignKey('self',blank=True, null=True ,related_name='children', on_delete=models.CASCADE) #for subcategory purpose eg : clothing->Tees
     title = models.CharField(max_length=50)
     keywords = models.CharField(max_length=255)
     description = models.TextField(max_length=255)
@@ -58,7 +60,7 @@ class Product(models.Model):
     amount=models.IntegerField(default=0)
     minamount=models.IntegerField(default=3)
     variant=models.CharField(max_length=10,choices=VARIANTS, default='None')
-    detail=RichTextUploadingField()
+    detail=RichTextUploadingField()  #check the admin area for super fun
     slug = models.SlugField(null=False, unique=True)
     status=models.CharField(max_length=10,choices=STATUS)
     created_at=models.DateTimeField(auto_now_add=True)
@@ -68,7 +70,7 @@ class Product(models.Model):
         return self.title
 
 
-    # ## method to create a fake table field in read only mode
+   # use this function to add more image to the product(read only fields cant do anything more than that) -- check admin area for more info
     def image_tag(self):
         if self.image.url is not None:
             return mark_safe('<img src="{}" height="50"/>'.format(self.image.url))
@@ -100,3 +102,27 @@ class Images(models.Model):
 
     def __str__(self):
         return self.title
+    
+    
+
+class Contact(models.Model):
+    
+    STATUS = (
+        ('New', 'New'),
+        ('Read', 'Read'),
+        ('Closed', 'Closed'),
+    )
+    name= models.CharField(blank=True,max_length=20)
+    email= models.CharField(blank=True,max_length=50)
+    subject= models.CharField(blank=True,max_length=50)
+    message= models.TextField(blank=True,max_length=255)
+    status=models.CharField(max_length=10,choices=STATUS,default='New')  #whether the query has been answered or not (generally for the ease of admin)
+    user_id=models.IntegerField(blank=True)
+    created_at=models.DateTimeField(default=datetime.now,blank=True)
+    updated_at=models.DateTimeField(default=datetime.now,blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+        
