@@ -1,18 +1,20 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from product.models import Product,Contact
+from product.models import Product,Contact,Category
 from django.contrib import messages
 from django.core.mail import send_mail
 
 # Create your views here.
 def index(request):
     products=Product.objects.all()
+    category=Category.objects.all()
     
     context={
-        'products':products
+        'products':products,
+        'category':category
     }
     print(products)
     
-    return render(request,'index.html', context )
+    return render(request,'index.html', context)
 
 def contact(request):
    

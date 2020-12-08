@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'shopstopApp.apps.ShopstopappConfig',
     'product.apps.ProductConfig',
     'accounts.apps.AccountsConfig',
+    'mptt',
 
     
    

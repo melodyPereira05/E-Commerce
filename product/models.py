@@ -3,14 +3,15 @@ from django.db import models
 from datetime import datetime
 from django.utils.safestring import mark_safe
 from django.forms import ModelForm
-
+from mptt.fields import TreeForeignKey
+from mptt.models import MPTTModel
 # Create your models here.
-class Category(models.Model):
+class Category(MPTTModel):
     STATUS = (
         ('True', 'True'),
         ('False', 'False'), 
     )
-    parent = models.ForeignKey('self',blank=True, null=True ,related_name='children', on_delete=models.CASCADE) #for subcategory purpose eg : clothing->Tees
+    parent = TreeForeignKey('self',blank=True, null=True ,related_name='children', on_delete=models.CASCADE) #for subcategory purpose eg : clothing->Tees
     title = models.CharField(max_length=50)
     keywords = models.CharField(max_length=255)
     description = models.TextField(max_length=255)
@@ -23,8 +24,8 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
-    # class MPTTMeta:
-    #     order_insertion_by = ['title']
+    class MPTTMeta:
+        order_insertion_by = ['title']
 
     # def get_absolute_url(self):
     #     return reverse('category_detail', kwargs={'slug': self.slug})

@@ -8,9 +8,23 @@
    <!--====== Main App ======-->
    <div id="app">
 
+ 
+   
+    {% load mptt_tags %}
+    <ul class="root">
+        {% recursetree category %}
+            <li>
+                {{ node.title }}
+                {% if not node.is_leaf_node %}
+                    <ul class="children">
+                        {{ children }}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endrecursetree %}
+    </ul>
+
   
-
-
     <!--====== App Content ======-->
     <div class="app-content">
 
@@ -1793,4 +1807,4 @@
 
 
 
-   {% endblock %}
+{% endblock %}
