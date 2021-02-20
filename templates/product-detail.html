@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 
 
-{% block title %} product name goes here {% endblock %}
+{% block title %} {{ product.title }} {% endblock %}
 
 {% block body %}
 
@@ -43,11 +43,11 @@
                             <div id="pd-o-initiate">
                                 <div class="pd-o-img-wrap" data-src="images/product/product-d-1.jpg">
 
-                                    <img class="u-img-fluid" src="images/product/product-d-1.jpg" data-zoom-image="images/product/product-d-1.jpg" alt=""></div>
-                                <div class="pd-o-img-wrap" data-src="images/product/product-d-2.jpg">
+                                    <img class="u-img-fluid" src="{{ product.image.url }}" data-zoom-image="images/product/product-d-1.jpg" alt=""></div>
+                                <div class="pd-o-img-wrap" data-src="{{ product.image.url }}">
 
-                                    <img class="u-img-fluid" src="images/product/product-d-2.jpg" data-zoom-image="images/product/product-d-2.jpg" alt=""></div>
-                                <div class="pd-o-img-wrap" data-src="images/product/product-d-3.jpg">
+                                    <img class="u-img-fluid" src="{{ product.image.url }}" data-zoom-image="images/product/product-d-2.jpg" alt=""></div>
+                                <div class="pd-o-img-wrap" data-src="{{ product.image.url }}">
 
                                     <img class="u-img-fluid" src="images/product/product-d-3.jpg" data-zoom-image="images/product/product-d-3.jpg" alt=""></div>
                                 <div class="pd-o-img-wrap" data-src="images/product/product-d-4.jpg">
@@ -65,19 +65,19 @@
                                 <div id="pd-o-thumbnail">
                                     <div>
 
-                                        <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt=""></div>
+                                        <img class="u-img-fluid" src="{{ product.image.url }}" alt=""></div>
                                     <div>
 
-                                        <img class="u-img-fluid" src="images/product/product-d-2.jpg" alt=""></div>
+                                        <img class="u-img-fluid" src="{{ product.image.url }}" alt=""></div>
                                     <div>
 
-                                        <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt=""></div>
+                                        <img class="u-img-fluid" src="{{ product.image.url }}" alt=""></div>
                                     <div>
 
-                                        <img class="u-img-fluid" src="images/product/product-d-4.jpg" alt=""></div>
+                                        <img class="u-img-fluid" src="{{ product.image.url }}" alt=""></div>
                                     <div>
 
-                                        <img class="u-img-fluid" src="images/product/product-d-5.jpg" alt=""></div>
+                                        <img class="u-img-fluid" src="{{ product.image.url }}" alt=""></div>
                                 </div>
                             </div>
                         </div>
@@ -90,13 +90,13 @@
                     <div class="pd-detail">
                         <div>
 
-                            <span class="pd-detail__name">Nikon Camera 4k Lens Zoom Pro</span></div>
+                            <span class="pd-detail__name">{{ product.title }}</span></div>
                         <div>
                             <div class="pd-detail__inline">
 
-                                <span class="pd-detail__price">$6.99</span>
+                                <span class="pd-detail__price">$ {{ product.price}} </span>
 
-                                <span class="pd-detail__discount">(76% OFF)</span><del class="pd-detail__del">$28.97</del></div>
+                                <span class="pd-detail__discount">(0% OFF)</span><del class="pd-detail__del">$ {{ product.minamount }}</del></div>
                         </div>
                         <div class="u-s-m-b-15">
                             <div class="pd-detail__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
