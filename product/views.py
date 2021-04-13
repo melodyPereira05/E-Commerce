@@ -3,6 +3,11 @@ from product.models import Product,Contact,Category
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.db.models import Q
+from . implementation import prepare_image,predict,get_image,get_colors
+from .scrapeData import amazon_scrape
+import PIL
+
+
 
 
 # Create your views here.
@@ -96,3 +101,82 @@ def search(request):
         
     }
     return render(request,'searchprod.html',context)
+
+
+def simple_upload(request):
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile'] 
+       
+        result= prepare_image(myfile)         
+        predictlist=predict(result)
+        
+        image_colors=get_colors(get_image(myfile), 2, True) 
+       
+        
+        COLORS = {
+        'green': [0,255,0],
+        'blue': [0,0,255],
+        'yellow': [255, 255, 0],
+        'red': [255, 0, 0],
+        'orange': [255, 69, 0],
+        'black': [0, 0, 0],
+        'light+green': [0,255,0],
+        'maroon': [128,0,0],
+        'dark+red': [139,0,0],
+        'brown': [165,42,42],
+        'blue': [135,206,250],
+        'aqua': [0,255,255],
+        'magenta': [255,0,255],
+        #'gray': [128,128,128],
+        'pink': [255,105,180],
+        'purple': [128,0,128],
+        'yellow': [218,165,32],
+
+
+}
+        
+        colorlists=[]
+       
+        for name,color in COLORS.items():
+            
+            col1,col2,col3 =abs(round(image_colors[0][0])-color[0]) ,abs(round(image_colors[0][1])-color[1]) ,abs(round(image_colors[0][2])-color[2])
+            print(name,col1,col2,col3)
+
+            # if(col1<200 and col2 <200 and col3<200):
+            if(col1<100 and col2<100 and  col3 <100) :
+
+                colorlists.append(name)
+                
+        for name,color in COLORS.items():
+            
+            col1,col2,col3 =abs(round(image_colors[1][0])-color[0]) ,abs(round(image_colors[1][1])-color[1]) ,abs(round(image_colors[1][2])-color[2])
+            print(name,col1,col2,col3)
+
+            # if(col1<200 and col2 <200 and col3<200):
+            if(col1<100 and col2<100 and  col3 <100) :
+
+                colorlists.append(name)
+                
+        
+                
+        if 'white' in colorlists:
+            colorlists.remove('white')
+        if 'snow' in colorlists:
+            colorlists.remove('snow')
+        if 'whitesmoke' in colorlists: 
+            colorlists.remove('whitesmoke')
+
+        print(colorlists)
+        print(predictlist)
+        datalist=amazon_scrape(colorlists,predictlist)
+        
+        
+        
+        
+        context={
+            'data':datalist
+        }
+        
+        return render(request,'scrape_product.html',context)
+    return render(request,'simple_upload.html')
+
