@@ -948,16 +948,17 @@
                             <div class="shop-p__toolbar u-s-m-b-30">
                                 <div class="shop-p__meta-wrap u-s-m-b-60">
 
-                                    <span class="shop-p__meta-text-1">FOUND 18 RESULTS</span>
+                                    <span class="shop-p__meta-text-1">FOUND {{count}} RESULTS</span>
+                                    <span>Related Searches:</span>
+                                     {% for elem in products %}
                                     <div class="shop-p__meta-text-2">
 
-                                        <span>Related Searches:</span>
+                                       
 
-                                        <a class="gl-tag btn--e-brand-shadow" href="#">men's clothing</a>
+                                       
 
-                                        <a class="gl-tag btn--e-brand-shadow" href="#">mobiles & tablets</a>
-
-                                        <a class="gl-tag btn--e-brand-shadow" href="#">books & audible</a></div>
+                                        <a class="gl-tag btn--e-brand-shadow" href="#"> {{ elem.keywords }} </a></div>
+                                        {% endfor %}
                                 </div>
                                 <div class="shop-p__tool-style">
                                     <div class="tool-style__group u-s-m-b-8">
@@ -987,17 +988,17 @@
                             </div>
                             <div class="shop-p__collection">
                                 <div class="row is-grid-active">
-<h1>Scraped Data from Amazon</h1>
-                                    {% for elem in amazon %}
+
+                                    {% for elem in products %}
 
 
                                     <div class="col-lg-4 col-md-6 col-sm-6">
                                         <div class="product-m">
                                             <div class="product-m__thumb">
 
-                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ elem.0 }}">
+                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="#">
 
-                                                    <img  style="width: 230px; height: 250px;" class="aspect__img" src="{{elem.3}}" alt=""></a>
+                                                    <img  style="width: 230px; height: 250px;" class="aspect__img" src="{{elem.image.url}}" alt=""></a>
                                                 <div class="product-m__quick-look">
 
                                                     <a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>
@@ -1009,15 +1010,15 @@
                                                 
                                                 <div class="product-m__name">
 
-                                                    <a href="product-detail.html">{{ elem.1 }}</a></div>
+                                                    <a href="{% url 'product_detail' elem.id %}">{{ elem.title }}</a></div>
                                                 <div class="product-m__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i>
 
                                                     </div>
-                                                <div class="product-m__price">Rs. {{ elem.2 }}</div>
+                                                <div class="product-m__price">Rs. {{ elem.price }}</div>
                                                 <div class="product-m__hover">
                                                     <div class="product-m__preview-description">
 
-                                                        <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></div>
+                                                        <span>{{ elem.description }}</span></div>
                                                     <div class="product-m__wishlist">
 
                                                         <a class="far fa-heart" href="#" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"></a></div>
@@ -1027,73 +1028,6 @@
                                     </div>
                                    
                                     {% endfor %}
-
-
-                                   
-                                    
-
-
-
-
-
-
-
-                    <h1>Scraped Data from Koovs</h1>
-                                    {% for elem in koovs %}
-
-
-                                    <div class="col-lg-4 col-md-6 col-sm-6">
-                                        <div class="product-m">
-                                            <div class="product-m__thumb">
-
-                                                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ elem.0 }}">
-
-                                                    <img  style="width: 230px; height: 250px;" class="aspect__img" src="{{elem.3}}" alt=""></a>
-                                                <div class="product-m__quick-look">
-
-                                                    <a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>
-                                                <div class="product-m__add-cart">
-
-                                                    <a class="btn--e-brand" data-modal="modal" data-modal-id="#add-to-cart">Add to Cart</a></div>
-                                            </div>
-                                            <div class="product-m__content">
-                                                
-                                                <div class="product-m__name">
-
-                                                    <a href="product-detail.html">{{ elem.1 }}</a></div>
-                                                <div class="product-m__rating gl-rating-style"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i>
-
-                                                    </div>
-                                                <div class="product-m__price">Rs. {{ elem.2 }}</div>
-                                                <div class="product-m__hover">
-                                                    <div class="product-m__preview-description">
-
-                                                        <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></div>
-                                                    <div class="product-m__wishlist">
-
-                                                        <a class="far fa-heart" href="#" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"></a></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                   
-                                    {% endfor %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                     
                                 </div>
                             </div>

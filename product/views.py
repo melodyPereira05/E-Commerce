@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.db.models import Q
 from . implementation import prepare_image,predict,get_image,get_colors
-from .scrapeData import amazon_scrape
+from .scrapeData import amazon_scrape,koovs_scrape
 import PIL
 
 
@@ -18,10 +18,19 @@ def index(request):
     context={
         'products':products,
         'category':category
+        
     }
     print(products)
     
     return render(request,'index.html', context)
+
+def allproducts(request):
+    products=Product.objects.all()
+    context={
+        'products':products,
+        'count':len(products)
+    }
+    return render(request,'all-products.html',context)
 
 def contact(request):
    
@@ -96,7 +105,8 @@ def search(request):
     
     context={
         
-        'filters':filter_category
+        'filters':filter_category,
+        'count':len(filter_category),
         
         
     }
@@ -110,9 +120,9 @@ def simple_upload(request):
         result= prepare_image(myfile)         
         predictlist=predict(result)
         
-        image_colors=get_colors(get_image(myfile), 2, True) 
-       
+        image_colors=get_colors(get_image(myfile), 2, True)
         
+       
         COLORS = {
         'green': [0,255,0],
         'blue': [0,0,255],
@@ -134,7 +144,10 @@ def simple_upload(request):
 
 
 }
+ 
+       
         
+              
         colorlists=[]
        
         for name,color in COLORS.items():
@@ -168,15 +181,23 @@ def simple_upload(request):
 
         print(colorlists)
         print(predictlist)
-        datalist=amazon_scrape(colorlists,predictlist)
+        amazon=amazon_scrape(colorlists,predictlist)
+        koovs=koovs_scrape(colorlists,predictlist)
+        # hm=hm_scrape(colorlists,predictlist)
+        # zolando=zolando_scrape(colorlists,predictlist)
         
         
         
         
         context={
-            'data':datalist
+            'amazon':amazon,
+            'koovs':koovs,
+            # 'hm':hm,
+            # 'zolando':zolando,
+            
         }
         
         return render(request,'scrape_product.html',context)
     return render(request,'simple_upload.html')
+
 
