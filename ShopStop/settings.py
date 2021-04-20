@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'product.apps.ProductConfig',
     'accounts.apps.AccountsConfig',
     'mptt',
+    'blogapp',
 
     
    

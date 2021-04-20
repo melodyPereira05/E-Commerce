@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="/static/css/utility.css">
 
     <!--====== App ======-->
-    <link rel="stylesheet" href="/static/css/app.color8.css">
+    <link rel="stylesheet" href="/static/css/app_color8.css">
 
     {% block css %}{% endblock %}
 </head>
@@ -50,7 +50,7 @@
 
                         <label for="main-search"></label>
 
-                        <input  class="input-text input-text--border-radius input-text--style-1" type="text" id="query" name="search_query" placeholder="Search bar">
+                        <input style="width: 400px;"  class="input-text input-text--border-radius input-text--style-1" type="text" id="query" name="search_query" placeholder="Search bar">
 
                         <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button>
                     </form>
@@ -75,7 +75,54 @@
 
                                     <!--====== Dropdown ======-->
 
+
                                     <span class="js-menu-toggle"></span>
+                                    {% if user.is_authenticated %}
+
+                                    <ul style="width:200px">
+                                        <li>
+                                            <a href="{% url 'accounts:dashboard-profile' %}"><i class="fas fa-user-circle u-s-m-r-6"></i>
+    
+                                                <span > {{ user.username }}</span></a></li>
+
+
+                                        
+                                                <li>
+
+                                                    <a href="javascript:{document.getElementById('logout').submit()}"><i class="fas fa-lock-open u-s-m-r-6"></i>
+                                                        
+                                                        <span>Signout</span>
+                                                    </a>
+                                                    <form action="{% url 'accounts:logout' %}" id="logout" method="post" >
+                                                        {% csrf_token %}
+                                                        <input type="hidden">
+                                                      </form>
+                                                </li>
+                                        </ul>
+
+
+                                    
+                                    {% else %}
+                                    
+
+                                    <ul style="width:120px">
+
+                                        
+                                        <li>
+
+                                            <a href="{% url 'accounts:register' %}"><i class="fas fa-user-plus u-s-m-r-6"></i>
+
+                                                <span>Signup</span></a></li>
+                                        <li>
+
+                                            <a href="{% url 'accounts:login' %}"><i class="fas fa-lock u-s-m-r-6"></i>
+
+                                                <span>Signin</span></a></li>
+                                        
+                                    </ul>
+                                    {% endif %}
+
+                                    <!-- <span class="js-menu-toggle"></span>
                                     <ul style="width:120px">
 
                                         <li>
@@ -98,7 +145,7 @@
                                             <a href="{% url 'accounts:logout' %}"><i class="fas fa-lock-open u-s-m-r-6"></i>
 
                                                 <span>Signout</span></a></li>
-                                    </ul>
+                                    </ul> -->
                                     <!--====== End - Dropdown ======-->
                                 </li>
                                 <li class="has-dropdown" data-tooltip="tooltip" data-placement="left" title="Settings">
@@ -714,11 +761,11 @@
                                
                                 <li class="has-dropdown">
 
-                                    <a>BLOG<i class="fas fa-angle-down u-s-m-l-6"></i></a>
+                                    <a href="{% url 'blogs' %}">Blog</a>
 
                                     <!--====== Dropdown ======-->
 
-                                    <span class="js-menu-toggle"></span>
+                                    <!-- <span class="js-menu-toggle"></span>
                                     <ul style="width:200px">
                                         <li>
 
@@ -735,7 +782,7 @@
                                         <li>
 
                                             <a href="blog-detail.html">Blog Details</a></li>
-                                    </ul>
+                                    </ul> -->
                                     <!--====== End - Dropdown ======-->
                                 </li>
                                 <li>
@@ -942,7 +989,7 @@
                         <span class="outer-footer__content-title">Contact Us</span>
                         <div class="outer-footer__text-wrap"><i class="fas fa-home"></i>
 
-                            <span>4247 Ashford Drive Virginia VA-20006 USA</span></div>
+                            <span>Bandra-20006 India</span></div>
                         <div class="outer-footer__text-wrap"><i class="fas fa-phone-volume"></i>
 
                             <span>(+0) 900 901 904</span></div>

@@ -950,15 +950,18 @@
 
                                     <span class="shop-p__meta-text-1">FOUND {{count}} RESULTS</span>
                                     <span>Related Searches:</span>
+                                    <div class="shop-p__meta-text-2"></div>
                                      {% for elem in products %}
-                                    <div class="shop-p__meta-text-2">
+                                    
 
                                        
 
                                        
 
-                                        <a class="gl-tag btn--e-brand-shadow" href="#"> {{ elem.keywords }} </a></div>
+                                        <a class="gl-tag btn--e-brand-shadow" href="#"> {{ elem.keywords }} </a>
+                                    
                                         {% endfor %}
+                                    </div>
                                 </div>
                                 <div class="shop-p__tool-style">
                                     <div class="tool-style__group u-s-m-b-8">

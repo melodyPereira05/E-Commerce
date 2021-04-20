@@ -3,10 +3,19 @@
 {% load static %}
 
 {% block body %}
+  <div class="section__text-wrap">
+    <h1 class="section__heading u-c-secondary u-s-m-b-12">Upload Image</h1>
+  </div>
+
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <input type="file" name="myfile">
-    <button type="submit">Upload</button>
+    <div class="load-more">
+      <input class="btn btn--e-brand" type="file" name="myfile">
+    </div>
+    <!-- <button class="btn btn--e-brand" type="submit">Upload</button> -->
+    <div class="load-more">
+      <button class="btn btn--e-brand" type="submit"><i class="fa fa-upload" aria-hidden="true"></i> Upload</button>
+    </div>
   </form>
   
   
