@@ -218,7 +218,7 @@
 
                                     <!--====== Image Code ======-->
 
-                                    <a class="aspect aspect--bg-grey aspect--1366-768 u-d-block" href="blog-detail.html">
+                                    <a class="aspect aspect--bg-grey aspect--1366-768 u-d-block" href="{% url 'blog' _id=data.id %}">
 
                                         <img class="aspect__img" src="{{data.image.url}}" alt=""></a>
                                     <!--====== End - Image Code ======-->
@@ -230,7 +230,7 @@
 
                                             <span class="bp__publish-date">
 
-                                                <a href="blog-left-sidebar.html">
+                                                <a href="#">
 
                                                     <span>{{ data.datepublished }}</span></a></span></span>
 
@@ -238,15 +238,15 @@
 
                                             <span class="bp__author">
 
-                                                <a href="blog-left-sidebar.html">Dayle</a></span></span>
+                                                <a href="#">Dayle</a></span></span>
 
                                         <span class="bp__stat-wrap">
 
                                             <span class="bp__comment">
 
-                                                <a href="blog-detail.html"><i class="far fa-comments u-s-m-r-4"></i>
+                                                <a href="#"><i class="far fa-comments u-s-m-r-4"></i>
 
-                                                    <span>8</span></a></span></span>
+                                                    <span>3</span></a></span></span>
 
                                         <span class="bp__stat-wrap">
 
@@ -256,20 +256,20 @@
 
                                                 <a href="blog-left-sidebar.html">News</a> -->
 
-                                                <a href="blog-left-sidebar.html">{{data.category}}</a></span></span></div>
+                                                <a href="#">{{data.category}}</a></span></span></div>
 
                                     <span class="bp__h1">
 
-                                        <a href="blog-detail.html">{{data.blog_title}}</a></span>
+                                        <a href="{% url 'blog' _id=data.id %}">{{data.blog_title}}</a></span>
 
                                     <!-- <span class="bp__h2">A post with the image</span> -->
                                     <div class="blog-t-w">
 
-                                        <a class="gl-tag btn--e-transparent-hover-brand-b-2" href="blog-left-sidebar.html">{{data.about_keyword1}}</a>
+                                        <a class="gl-tag btn--e-transparent-hover-brand-b-2" href="#">{{data.about_keyword1}}</a>
 
-                                        <a class="gl-tag btn--e-transparent-hover-brand-b-2" href="blog-left-sidebar.html">{{data.about_keyword2}}</a>
+                                        <a class="gl-tag btn--e-transparent-hover-brand-b-2" href="#">{{data.about_keyword2}}</a>
 
-                                        <a class="gl-tag btn--e-transparent-hover-brand-b-2" href="blog-left-sidebar.html">{{data.about_keyword3}}</a></div>
+                                        <a class="gl-tag btn--e-transparent-hover-brand-b-2" href="#">{{data.about_keyword3}}</a></div>
                                     <p class="bp__p">{{data.blog|slice:":150"}}</p>
                                     <div class="gl-l-r">
                                         <div>
