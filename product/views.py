@@ -179,6 +179,7 @@ def simple_upload(request):
         if 'whitesmoke' in colorlists: 
             colorlists.remove('whitesmoke')
 
+        colorlists = colorlists[:3]
         print(colorlists)
         print(predictlist)
         amazon=amazon_scrape(colorlists,predictlist)

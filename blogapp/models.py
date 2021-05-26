@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 
 post_list = User.objects.all()
-paginator = Paginator(post_list, 5)
+# paginator = Paginator(post_list, 5)
 
 STATUS = (
     (0,"Draft"),

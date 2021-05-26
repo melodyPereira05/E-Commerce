@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 def amazon_scrape(colors,tag):  
    
-    # colors = colors[:2]
+    colors = colors[:3]
     baseurl = "https://www.amazon.in/"
     base = "https://www.amazon.in/"
     gender = "women"

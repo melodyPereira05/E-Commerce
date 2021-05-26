@@ -7,7 +7,7 @@ from .forms import SearchForm,CommentForm
 from django.shortcuts import render,redirect
  
 def BlogListView(request):
-    paginate_by = 3
+    # paginate_by = 3
     dataset = BlogModel.objects.filter(status=1).order_by('-created_on')
     # dataset = BlogModel.objects.all()
     if request.method == 'POST':

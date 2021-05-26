@@ -65,7 +65,7 @@ def predict(result):
             i+=1
 
 
-
+    resultlist = resultlist[:3]
     return resultlist   
 
 
